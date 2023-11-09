@@ -1,2 +1,5 @@
-\target
-\index
+target/
+index/
+examples/
+
+.DS_Store
