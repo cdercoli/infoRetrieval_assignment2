@@ -1,19 +1,19 @@
 package ie.superawesome.project;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-
 
 public class CreateIndex
 {
     private static String INDEX_DIRECTORY = "./index";
+    private static String FEDERAL_REGISTER_PATH = "..\\collection\\fr94";
     public static void main(String[] args) throws IOException
     {
         try {
@@ -23,7 +23,7 @@ public class CreateIndex
             indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
-            //IndexDocument(indexWriter, "Path to file or whatever");
+            new FederalRegister().IndexFolder(indexWriter, FEDERAL_REGISTER_PATH);
             
             indexWriter.close();
             directory.close();
