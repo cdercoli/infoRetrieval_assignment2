@@ -19,12 +19,12 @@ public class CollectionIndexer {
             try {
                 System.out.println("Indexing collection " + klass.getName() + " at path " + path);
                 klass.getConstructor().newInstance().IndexFolder(indexWriter, path);
+                System.out.println("Finished indexing collection " + klass.getName() + " at path " + path);
             } catch (Exception e) {
                 System.out.println("Error indexing collection " + klass.getName() + " at path " + path);
                 e.printStackTrace();
                 continue;
             }       
-            System.out.println("Finished indexing collection " + klass.getName() + " at path " + path);
         }
     }
 }
