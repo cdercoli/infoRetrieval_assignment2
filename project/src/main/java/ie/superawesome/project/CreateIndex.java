@@ -13,7 +13,6 @@ import org.apache.lucene.index.IndexWriterConfig;
 public class CreateIndex
 {
     private static String INDEX_DIRECTORY = "./index";
-    private static String FEDERAL_REGISTER_PATH = "..\\collection\\fr94";
     public static void main(String[] args) throws IOException
     {
         try {
@@ -23,8 +22,8 @@ public class CreateIndex
             indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
-            new FederalRegister().IndexFolder(indexWriter, FEDERAL_REGISTER_PATH);
-            
+            CollectionIndexer.Index(indexWriter);
+
             indexWriter.close();
             directory.close();
         }catch (Exception e){
