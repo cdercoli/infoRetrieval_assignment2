@@ -9,7 +9,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-@CollectionLocation(path = "..\\collection\\fr94")
 public class FederalRegister extends Collection {
     @Override
     protected void IndexFile(IndexWriter indexWriter, String filename) throws IOException {
@@ -18,10 +17,17 @@ public class FederalRegister extends Collection {
         for (Element elem : elements) {
             String title = elem.select("DOCTITLE").text();
             String id = elem.select("DOCNO").text();
+            // Additionally we can remove elements here if we don't want them in the text tag
+            // elem.select("blah").remove();
             String content = elem.select("TEXT").text();
             // Index relevant fields
             // System.out.printf("ID: %s, Title: %s, ContentLength: %d\n", id, title, content.length());
         }
+    }
+
+    @Override
+    protected String Path() {
+        return "..\\collection\\fr94";
     }
     
 }

@@ -17,5 +17,7 @@ public abstract class Collection {
         }
     }
 
+    abstract protected String Path();
+
     abstract protected void IndexFile(IndexWriter indexWriter, String filename) throws IOException;
 }

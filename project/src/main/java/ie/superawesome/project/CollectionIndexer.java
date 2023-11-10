@@ -10,20 +10,14 @@ public class CollectionIndexer {
         Reflections reflections = new Reflections("ie.superawesome.project");
         Set<Class<? extends Collection>> collectionClasses = reflections.getSubTypesOf(Collection.class);
         for (Class<? extends Collection> klass : collectionClasses) {
-            CollectionLocation collectionLocation = klass.getAnnotation(CollectionLocation.class);
-            if (collectionLocation == null) {
-                System.out.println("Class " + klass.getName() + " does not have CollectionLocation annotation, if you want to index this collection please add it.");
-                continue;
-            }
-            String path = collectionLocation.path();
             try {
-                System.out.println("Indexing collection " + klass.getName() + " at path " + path);
-                klass.getConstructor().newInstance().IndexFolder(indexWriter, path);
-                System.out.println("Finished indexing collection " + klass.getName() + " at path " + path);
+                Collection instance = klass.getConstructor().newInstance();
+                System.out.println("Indexing collection " + klass.getName() + " at path " + instance.Path());
+                instance.IndexFolder(indexWriter, instance.Path());
+                System.out.println("Finished indexing collection " + klass.getName() + " at path " + instance.Path());
             } catch (Exception e) {
-                System.out.println("Error indexing collection " + klass.getName() + " at path " + path);
+                System.out.println("Error indexing collection " + klass.getName());
                 e.printStackTrace();
-                continue;
             }       
         }
     }
