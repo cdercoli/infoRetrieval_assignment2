@@ -2,6 +2,7 @@ package ie.superawesome.project;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.nio.file.Paths;
 
 import org.apache.lucene.index.IndexWriter;
@@ -10,13 +11,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class FederalRegister extends Collection {
+public class FinancialTimes extends Collection {
     @Override
     protected void IndexFile(IndexWriter indexWriter, String filename) throws IOException {
         Document file = Jsoup.parse(new File(filename));
         Elements elements = file.select("DOC");
         for (Element elem : elements) {
-            String title = elem.select("DOCTITLE").text();
+            String title = elem.select("HEADLINE").text();
             String id = elem.select("DOCNO").text();
             // Additionally we can remove elements here if we don't want them in the text tag
             // elem.select("blah").remove();
@@ -28,7 +29,7 @@ public class FederalRegister extends Collection {
 
     @Override
     protected String Path() {
-        return Paths.get("..", "collection", "fr94").toString();
+        return Paths.get("..", "collection", "ft").toString();
     }
-    
+
 }
