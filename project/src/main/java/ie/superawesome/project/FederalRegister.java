@@ -2,6 +2,7 @@ package ie.superawesome.project;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.apache.lucene.index.IndexWriter;
 import org.jsoup.Jsoup;
@@ -27,7 +28,7 @@ public class FederalRegister extends Collection {
 
     @Override
     protected String Path() {
-        return "..\\collection\\fr94";
+        return Paths.get("..", "collection", "fr94").toString();
     }
     
 }
