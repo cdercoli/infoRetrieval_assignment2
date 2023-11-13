@@ -23,6 +23,17 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 
+class Query
+{
+    int num;
+    String include, ignore;
+    public Query(int num, String include, String ignore){
+        this.num = num;
+        this.include = include;
+        this.ignore = ignore;
+    }
+}
+
 public class CreateIndex
 {
 
@@ -36,12 +47,53 @@ public class CreateIndex
             indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
-            IndexDocument(indexWriter, "../../infoweb/Assignment Two/fbis");
-            
+            topicsToQueries("C:/Users/Emmet/Desktop/infoweb/Assignment Two/topics");
+            //IndexDocument(indexWriter, "C:/Users/Emmet/Desktop/infoweb/Assignment Two/fbis");
+
             indexWriter.close();
             directory.close();
         }catch (Exception e){
             System.out.println("Error: " + e.toString());
+        }
+    }
+
+    private static String retrieve(String regex,String doc)
+    {
+        Matcher matcher = Pattern.compile(regex,Pattern.DOTALL).matcher(doc);
+        if(matcher.find()){
+            return matcher.group(1).trim();
+        }
+        else return "";
+    }
+
+    private static void topicsToQueries(String pathString) throws IOException
+    {
+        File file = new File(pathString);
+        String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
+        List<String> topics = new ArrayList<String>();
+        Matcher matcher = tagRegex("top").matcher(content);
+        while(matcher.find()){
+            topics.add(matcher.group(1));
+        }
+        List<Query> queries = new ArrayList<Query>();
+        for(String topic : topics){
+            topic = topic.trim();
+            int num = Integer.parseInt(topic.substring(14,17));
+            String title = retrieve("<title>(.+?)<desc>", topic);
+
+            String desc = retrieve("<desc> Description:(.+?)<narr>",topic).replace("\n"," ");
+
+            String narr = retrieve("<narr> Narrative:((.|\n)*)", topic).replace("\n"," ");
+
+            String[] sentences = narr.split("\\.|;");
+            String ignoreable = "";
+            for (String sentence : sentences){
+                if( sentence.contains("not relevant")){
+                    ignoreable = ignoreable + " "+ sentence.trim();
+                }
+            }
+            ignoreable = ignoreable.replace(" not relevant", "").trim();
+            queries.add(new Query(num,title+' '+desc,ignoreable));
         }
     }
 
