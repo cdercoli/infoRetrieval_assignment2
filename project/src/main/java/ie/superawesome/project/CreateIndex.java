@@ -125,6 +125,8 @@ public class CreateIndex
                             }
                             text = text.replaceAll("<P>", "");
                             text = text.replaceAll("</P>", "");
+                            text = text.replaceAll("<GRAPHIC>", "");
+                            text = text.replaceAll("</GRAPHIC>", "");
                             //System.out.println(text);
                             doc.add(new TextField("text", text, Field.Store.YES));
                         }
