@@ -1,15 +1,14 @@
 package ie.superawesome.project;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-
 
 public class CreateIndex
 {
@@ -23,8 +22,8 @@ public class CreateIndex
             indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
-            //IndexDocument(indexWriter, "Path to file or whatever");
-            
+            CollectionIndexer.Index(indexWriter);
+
             indexWriter.close();
             directory.close();
         }catch (Exception e){
