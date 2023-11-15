@@ -1,5 +1,6 @@
 package ie.superawesome.project;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -22,6 +23,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
+
 
 class Query
 {
@@ -48,7 +50,7 @@ public class CreateIndex
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
 
             topicsToQueries("C:/Users/Emmet/Desktop/infoweb/Assignment Two/topics");
-            //IndexDocument(indexWriter, "C:/Users/Emmet/Desktop/infoweb/Assignment Two/fbis");
+            CollectionIndexer.Index(indexWriter);
 
             indexWriter.close();
             directory.close();
