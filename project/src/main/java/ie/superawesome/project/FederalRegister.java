@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,6 +25,9 @@ public class FederalRegister extends Collection {
             String content = elem.select("TEXT").text();
             // Index relevant fields
             // System.out.printf("ID: %s, Title: %s, ContentLength: %d\n", id, title, content.length());
+            org.apache.lucene.document.Document document = new org.apache.lucene.document.Document();
+            document.add(new TextField("text", content, Field.Store.YES));
+            indexWriter.addDocument(document);
         }
     }
 
