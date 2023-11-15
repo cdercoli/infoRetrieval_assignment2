@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 
@@ -35,7 +36,7 @@ public class LATimes extends Collection {
             if (strCurrentLine.contains("<DOCID>")) {
                 strCurrentLine = strCurrentLine.substring(8, strCurrentLine.indexOf("/") - 2);
                 //System.out.println(strCurrentLine);
-                doc.add(new TextField("docid", strCurrentLine, Field.Store.YES));
+                doc.add(new StringField("docid", strCurrentLine, Field.Store.YES));
             }
             if (strCurrentLine.contains("<DATE>")) {
                 strCurrentLine = objReader.readLine();
