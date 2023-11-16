@@ -22,12 +22,22 @@ public class FederalRegister extends Collection {
             String title = elem.select("DOCTITLE").text();
             String id = elem.select("DOCNO").text();
             // Additionally we can remove elements here if we don't want them in the text tag
-            // elem.select("blah").remove();
+            // elem.select("blah").remove()
+
+            elem.select("ACTION").remove();
+            elem.select("RINDOCK").remove();
+            elem.select("SIGNJOB").remove();
+            elem.select("FRFILING").remove();
+            elem.select("BILLING").remove();
+
+
+
             String content = elem.select("TEXT").text();
             // Index relevant fields
             // System.out.printf("ID: %s, Title: %s, ContentLength: %d\n", id, title, content.length());
             org.apache.lucene.document.Document document = new org.apache.lucene.document.Document();
             document.add(new StringField("docid", id, Field.Store.YES));
+            document.add(new TextField("title", title, Field.Store.YES));
             document.add(new TextField("text", content, Field.Store.YES));
             indexWriter.addDocument(document);
         }

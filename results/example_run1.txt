@@ -1,0 +1,120 @@
+<top>
+
+<num> Number: 450 
+<title> King Hussein, peace 
+
+<desc> Description: 
+How significant a figure over the years was the late
+Jordanian King Hussein in furthering peace in the 
+Middle East?  
+
+<narr> Narrative: 
+A relevant document must include mention of Israel;
+King Hussein himself as opposed to other Jordanian
+officials; discussion of the King's on-going, previous 
+or upcoming efforts; and efforts pertinent to the peace 
+process, not merely Jordan's relationship with other 
+middle-east countries or the U.S. 
+
+</top>
+
+Top3 Results
+
+===============LA020990-0117===============
+<DOC>
+  <DOCNO> LA020990-0117 </DOCNO>
+  <DOCID> 174001 </DOCID>
+  <DATE>
+    <P> February 9, 1990, Friday, Orange County Edition </P>
+  </DATE>
+  <SECTION>
+    <P> Part A; Page 14; Column 4; Metro Desk </P>
+  </SECTION>
+  <LENGTH>
+    <P> 67 words </P>
+  </LENGTH>
+  <HEADLINE>
+    <P> KING HUSSEIN TRAVELS TO BAGHDAD FOR TALKS </P>
+  </HEADLINE>
+  <BYLINE>
+    <P> By Reuters </P>
+  </BYLINE>
+  <DATELINE>
+    <P> AMMAN, Jordan </P>
+  </DATELINE>
+  <TEXT>
+    <P> King Hussein flew to Baghdad on Thursday for talks on the Middle East with Iraqi President Saddam Hussein. </P>
+    <P> The state-run news agency Petra gave no further details of the previously unannounced trip. </P>
+    <P> President Hussein, President Hosni Mubarak of Egypt and Yemen's leader, Col. Ali Abdullah Saleh, will join King Hussein in Amman on Feb. 24 for a summit meeting of the Arab Cooperation Council. </P>
+  </TEXT>
+  <TYPE>
+    <P> Wire </P>
+  </TYPE>
+  <SUBJECT>
+    <P> SUMMIT CONFERENCES; OFFICIAL VISITS; HEADS OF STATE; ARAB COOPERATION COUNCIL; MIDDLE EAST PEACE; HUSSEIN (KING OF JORDAN); IRAQ -- FOREIGN RELATIONS -- JORDAN </P>
+  </SUBJECT>
+</DOC>
+===============FBIS3-34163===============
+<DOC>
+  <DOCNO> FBIS3-34163 </DOCNO>
+  <HT> "drnes024_m_94006" </HT>
+  <HEADER>
+    <AU> FBIS-NES-94-024 </AU> Document Type:Daily Report <DATE1> 4 Feb 1994 </DATE1>
+  </HEADER>
+  <F P=100> JORDAN </F>
+  <H3>
+    <TI> Meets With Austrian President </TI>
+  </H3>
+  <F P=102> JN0402093794 Amman Radio Jordan Network in Arabic 0500 GMT 4 Feb 94 </F>
+  <F P=103> JN0402093794 </F>
+  <F P=104> Amman Radio Jordan Network </F>
+  <TEXT> Language: <F P=105> Arabic </F> Article Type:BFN [Excerpt] His Majesty King Husayn and Austrian President Thomas Klestil held talks in Vienna yesterday. Their discussions dealt with bilateral relations and efforts to achieve peace in the Middle East. The Austrian president held a dinner banquet in honor of his majesty the king. The banquet was attended by top Austrian officials. His Majesty King Husayn will hold talks today with Austrian Chancellor Franz Vranitzky. His Majesty King Husayn, commander in chief of the Jordanian Armed Forces, arrived in Vienna last night, arriving from Croatia where he visited the Jordanian troops operating within the international peacekeeping forces there. [passage omitted] </TEXT>
+</DOC>
+===============LA081690-0240===============
+<DOC>
+  <DOCNO> LA081690-0240 </DOCNO>
+  <DOCID> 263273 </DOCID>
+  <DATE>
+    <P> August 16, 1990, Thursday, P.M. Final </P>
+  </DATE>
+  <SECTION>
+    <P> Part P; Page 1; Column 3; Late Final Desk </P>
+  </SECTION>
+  <LENGTH>
+    <P> 464 words </P>
+  </LENGTH>
+  <HEADLINE>
+    <P> KING HUSSEIN MEETS BUSH; NO PROGRESS </P>
+  </HEADLINE>
+  <BYLINE>
+    <P> From Times Wire Services </P>
+  </BYLINE>
+  <DATELINE>
+    <P> KENNEBUNKPORT, Me. </P>
+  </DATELINE>
+  <TEXT>
+    <P> President Bush pressed King Hussein today to close Iraq's access to the sea through Jordan, but Hussein indicated that Bush made little headway with him. </P>
+    <P> Hussein had been widely reported to be carrying a message from Iraqi President Saddam Hussein. But he said after the meeting that he had brought no such message. </P>
+    <P> "I did not bring any message. I am not talking on behalf of anyone in the area," the king told reporters outside Bush's seaside vacation home. </P>
+    <P> Bush had been expected to try to persuade Hussein to respect a U.N. embargo and cut off Iraqi shipments moving through the Jordanian port of Aqaba. But Hussein said after their two-hour meeting, "I am not suggesting that we have altered our position at all in this regard." </P>
+    <P> He said his government supports the U.N. sanctions but is seeking clarification on "exactly what the sanctions mean," particularly with regard to foodstuffs. </P>
+    <P> Bush suggested Tuesday that Aqaba be shut down if Hussein continues to allow Iraqi supplies to move through it. But Hussein said today the port, "our only outlet to the sea," is vital to Jordan. </P>
+    <P> The king, who has been seeking to mediate the dispute between his allies in Baghdad and Washington, expressed the hope that the crisis will ease. </P>
+    <P> "I tried my utmost to see what could be done," he said. </P>
+    <P> He said his talks with Bush were useful because they gave him a chance to hear Bush's views. But he gave no indication of any progress on a diplomatic solution. </P>
+    <P> Asked if he feels such a solution is possible, the king replied: "I suppose one has to have hope. Without hope you can't get anywhere." </P>
+    <P> Hussein was escorted to his helicopter from Bush's summer home by somber-looking U.S. officials, including Secretary of State James A. Baker III and National Security Adviser Brent Scowcroft. Neither Baker nor Scowcroft commented to reporters. </P>
+    <P> Bush, who had given his longtime friend a helicopter tour of Washington during a friendly meeting last year, remained inside his home. </P>
+    <P> After the talks with Hussein, Bush also met with Saudi Arabia's foreign minister, Prince Saud al Faisal, and the Saudi ambassador to the United States, Prince Bander ibn Sultan. </P>
+    <P> Hussein was accompanied on his trip here by Baker, who hitched a ride on the monarch's jetliner. At the helipad on the President's compound, Bush and his wife Barbara greeted the king warmly when he arrived. </P>
+    <P> "Your majesty, welcome," Bush said. "I think you know Barbara." </P>
+    <P> The United States is irritated at the king because of his defense of Saddam Hussein and refusal to abide by U.N. sanctions. On the other hand, officials say they recognize that King Hussein is in a tough spot, with a powerful and aggressive Iraq as his neighbor and a large Palestinian population in his country sympathetic to Saddam Hussein. </P>
+  </TEXT>
+  <GRAPHIC>
+    <P> Photo, King Hussein of Jordan is greeted by President Bush in Maine. Reuters </P>
+  </GRAPHIC>
+  <TYPE>
+    <P> Wire </P>
+  </TYPE>
+</DOC>
+================================

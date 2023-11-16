@@ -19,13 +19,11 @@ public class LATimes extends Collection {
         Document file = Jsoup.parse(new File(filename));
         Elements elements = file.select("DOC");
         for (Element elem : elements) {
-            String title = elem.select("DOCTITLE").text();
-            String id = elem.select("DOCNO").text();
-            // Additionally we can remove elements here if we don't want them in the text tag
+            elem.select("SECTION").remove();
+            elem.select("TYPE").remove();
 
-            elem.select("GRAPHIC").remove();
-
-            String content = elem.select("TEXT").text();
+            String content = elem.select("TEXT").text() + " " + elem.select("GRAPHIC").text();
+            
             String docno = elem.select("DOCNO").text();
             String date = elem.select("DATE").text();
             String section = elem.select("SECTION").text();
@@ -35,6 +33,7 @@ public class LATimes extends Collection {
 
             org.apache.lucene.document.Document document = new org.apache.lucene.document.Document();
             document.add(new StringField("docid", docno, Field.Store.YES));
+            document.add(new TextField("text", headline, Field.Store.YES));
             document.add(new TextField("text", content, Field.Store.YES));
             indexWriter.addDocument(document);
 

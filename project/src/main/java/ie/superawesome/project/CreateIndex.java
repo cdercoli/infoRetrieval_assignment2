@@ -1,6 +1,7 @@
 package ie.superawesome.project;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -70,6 +71,8 @@ public class CreateIndex
             List<Query> queries = topicsToQueries(Paths.get("..", "topics", "topics").toString());
 
 
+
+
             searcher.setSimilarity(similarity);
             for (Query queryDoc : queries) {
                 System.out.println("ID: " + queryDoc.num +" Query: " + queryDoc.include);
@@ -108,6 +111,10 @@ public class CreateIndex
         else return "";
     }
 
+    private static Pattern tagRegex(String tag){
+        return Pattern.compile("<"+tag+">(.+?)</"+tag+">", Pattern.DOTALL);
+    }
+
     private static List<Query> topicsToQueries(String pathString) throws IOException
     {
         File file = new File(pathString);
@@ -138,82 +145,5 @@ public class CreateIndex
             queries.add(new Query(num,title+' '+desc,ignoreable));
         }
         return queries;
-    }
-
-    public static Pattern tagRegex(String tag){
-        return Pattern.compile("<"+tag+">(.+?)</"+tag+">", Pattern.DOTALL);
-    }
-
-    public static void IndexDocument(IndexWriter writer, String pathString) throws IOException, ParseException
-    {
-        File path = new File(pathString);
-        File[] files = path.listFiles();
-        ArrayList<Document> docs = new ArrayList<Document>();
-        for (File file : files) {
-            if(!file.getName().contains("read")){
-                String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
-                List<String> docTexts = new ArrayList<String>();
-                Matcher matcher = tagRegex("DOC").matcher(content);
-                while(matcher.find()){
-                    docTexts.add(matcher.group(1));
-                }
-                for(String docText : docTexts){
-                    Document doc = new Document();
-                    matcher = tagRegex("DOCNO").matcher(docText);
-                    matcher.find();
-                    String docNo = matcher.group(1);
-                    docNo = docNo.trim();
-                    doc.add(new StringField("DOCNO",docNo,Field.Store.YES));
-
-
-                    matcher = tagRegex("DATE1").matcher(docText);
-                    matcher.find();
-                    String dateText = matcher.group(1).trim();
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");
-                    Date date = formatter.parse("1 January 1970");
-                    try {
-                        date = formatter.parse(dateText);
-                    } catch (ParseException _e) {
-                        try {
-                            date = new SimpleDateFormat("MMMM dd yyyy").parse(dateText);
-                        } catch (ParseException __e) {
-                            try {
-                                date = formatter.parse(dateText + " 1970");
-                            } catch (ParseException ___e) {
-                                try {
-                                    date = formatter.parse("01 January "+dateText.substring(dateText.length()-4,dateText.length()));
-                                } catch (ParseException ____e) {
-                                    ____e.printStackTrace();
-                                }
-                            }
-                        }
-                    }
-                    int DateNum = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(date));
-                    if(DateNum == 19700101){
-                        System.out.println(file.getName()+", "+docNo);
-                    }
-                    doc.add(new LongPoint("DATE",DateNum));
-
-                    matcher = tagRegex("TI").matcher(docText);
-                    matcher.find();
-                    String title = matcher.group(1);
-                    title = title.trim();
-                    doc.add(new TextField("TITLE", title, Field.Store.YES));
-
-                    System.out.println(file.getName()+" - "+docNo+": "+title);
-
-                    matcher = tagRegex("TEXT").matcher(docText);
-                    matcher.find();
-                    String text = matcher.group(1);
-                    text = text.replaceAll("(<F.+?>)|(</F>)|(</?H[0-9]>)|(Language:.*)|(Article Type:.*)","");
-                    text = text.trim();
-                    doc.add(new TextField("TEXT",text,Field.Store.YES));
-
-                    docs.add(doc);
-                }
-            }
-        }
-        writer.addDocuments(docs);
-        writer.close();
     }
 }
