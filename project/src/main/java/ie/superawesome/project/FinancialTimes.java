@@ -33,7 +33,7 @@ public class FinancialTimes extends Collection {
             document.add(new StringField("docid", id, Field.Store.YES));
             document.add(new TextField("title", title, Field.Store.YES));
             document.add(new TextField("text", content, Field.Store.YES));
-            inexWriter.addDocument(document);
+            indexWriter.addDocument(document);
         }
     }
 
