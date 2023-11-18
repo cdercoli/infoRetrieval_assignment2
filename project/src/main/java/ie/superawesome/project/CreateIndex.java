@@ -70,12 +70,17 @@ public class CreateIndex
             Similarity similarity = new ClassicSimilarity();
             List<Query> queries = topicsToQueries(Paths.get("..", "topics", "topics").toString());
 
+            // set up file writer to write results to
+            FileWriter fileWriter = new FileWriter("results/query_results.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
+            // initialise the individual queries
+            StringBuilder queryResultBuilder = new StringBuilder();
 
 
             searcher.setSimilarity(similarity);
             for (Query queryDoc : queries) {
-                System.out.println("ID: " + queryDoc.num +" Query: " + queryDoc.include);
+                // System.out.println("ID: " + queryDoc.num +" Query: " + queryDoc.include);
                 HashMap<String, Float> boosts = new HashMap<String, Float>();
                 boosts.put("text", 1.0f);
                 MultiFieldQueryParser multiFieldQP = new MultiFieldQueryParser(new String[] { "text" }, analyzer, boosts);
@@ -83,20 +88,24 @@ public class CreateIndex
                 ScoreDoc[] results = searcher.search(query, 1000).scoreDocs;
 
                 int rank = 1;
-                int limit = 3;
+                int limit = 1000;
                 for (ScoreDoc scoreDoc : results) {
                     if (limit-- == 0) {
                         break;
                     }
                     Document document = searcher.doc(scoreDoc.doc);
-                    System.out.println(document.get("docid"));
+                    // System.out.println(document.get("docid"));
+                    String resultLine = queryDoc.num + " Q0 " + document.get("docid") + " "+rank+" " + scoreDoc.score + " VMS\n";
+                    queryResultBuilder.append(resultLine);
                     //writer.write(queryDoc.num + " Q0 " + document.get("id") + " "+rank+" " + scoreDoc.score + "VMS\n");
                     rank++;
                     
                 }
-            }
 
- 
+            }
+            bufferedWriter.write(queryResultBuilder.toString());
+            bufferedWriter.close();
+            
         }catch (Exception e){
             System.out.println("Error: " + e.toString());
         }
