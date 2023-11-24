@@ -4,14 +4,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.nio.file.Files;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.CharArraySet;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.store.Directory;
@@ -45,8 +49,19 @@ public class CreateIndex
     public static void main(String[] args) throws IOException
     {
         try {
+            List<String> stopWords;
+            try {
+                stopWords = Files.readAllLines(Paths.get("stopwords/stop_words_english.txt"), StandardCharsets.UTF_8);
+            } catch (IOException e) {
+                e.printStackTrace();
+                stopWords = Arrays.asList();
+            }
+
+
+            CharArraySet stopWords2 = new CharArraySet(stopWords, true);
+
             Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
-            Analyzer analyzer = new StandardAnalyzer();
+            Analyzer analyzer = new EnglishAnalyzer(stopWords2);
             IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
             indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
             IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
