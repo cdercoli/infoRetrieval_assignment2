@@ -33,7 +33,7 @@ public class LATimes extends Collection {
 
             org.apache.lucene.document.Document document = new org.apache.lucene.document.Document();
             document.add(new StringField("docid", docno, Field.Store.YES));
-            document.add(new TextField("text", headline, Field.Store.YES));
+            document.add(new TextField("title", headline, Field.Store.YES));
             document.add(new TextField("text", content, Field.Store.YES));
             indexWriter.addDocument(document);
 
