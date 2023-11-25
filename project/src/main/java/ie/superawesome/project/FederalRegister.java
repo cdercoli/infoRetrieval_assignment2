@@ -18,9 +18,11 @@ public class FederalRegister extends Collection {
     protected void IndexFile(IndexWriter indexWriter, String filename) throws IOException {
         Document file = Jsoup.parse(new File(filename));
         Elements elements = file.select("DOC");
+        org.apache.lucene.document.Document document;
+        String title, id, content;
         for (Element elem : elements) {
-            String title = elem.select("DOCTITLE").text();
-            String id = elem.select("DOCNO").text();
+            title = elem.select("DOCTITLE").text();
+            id = elem.select("DOCNO").text();
             // Additionally we can remove elements here if we don't want them in the text tag
             // elem.select("blah").remove()
 
@@ -32,10 +34,10 @@ public class FederalRegister extends Collection {
 
 
 
-            String content = elem.select("TEXT").text();
+            content = elem.select("TEXT").text();
             // Index relevant fields
             // System.out.printf("ID: %s, Title: %s, ContentLength: %d\n", id, title, content.length());
-            org.apache.lucene.document.Document document = new org.apache.lucene.document.Document();
+            document = new org.apache.lucene.document.Document();
             document.add(new StringField("docid", id, Field.Store.YES));
             document.add(new TextField("title", title, Field.Store.YES));
             document.add(new TextField("text", content, Field.Store.YES));

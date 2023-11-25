@@ -55,14 +55,14 @@ public class CreateIndex
             List<Query> queries = topicsToQueries(Paths.get("..", "topics", "topics").toString());
 
 
-            Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
+            //Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
             Analyzer analyzer = new EnglishAnalyzer();
-            IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-            indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-            IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
-            CollectionIndexer.Index(indexWriter);
-            indexWriter.close();
-            directory.close();
+            //IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
+            //indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+            //IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
+            //CollectionIndexer.Index(indexWriter);
+            //indexWriter.close();
+            //directory.close();
             
 
 
@@ -197,23 +197,28 @@ public class CreateIndex
                 sentence = splitSentence[0];
             }
             //System.out.println(sentence);
+            boolean isIrrelevant = false;
             for (String irrel : irrelevantArr) {
                 if (sentence.contains(irrel)) {
+                    isIrrelevant = true;
                     sentence = sentence.replaceAll(irrel, "");
                     for (String gen : generalArr) {
                         sentence = sentence.replaceAll(gen, "");
                     }
                     irrelevant += sentence + " ";
-                } else {
-                    for (String rel : relevantArr) {
-                        sentence = sentence.replaceAll(rel, "");
-                    }
-                    for (String gen : generalArr) {
-                        sentence = sentence.replaceAll(gen, "");
-                    }
-                    relevant += sentence + " ";
+                    break;
+                } 
+            }
+            if (isIrrelevant) {
+                continue;
+            }
+            for (String rel : relevantArr) {
+                sentence = sentence.replaceAll(rel, "");
+                for (String gen : generalArr) {
+                    sentence = sentence.replaceAll(gen, "");
                 }
             }
+            relevant += sentence + " ";
         }
         splitNarrative[0] = relevant;
         splitNarrative[1] = irrelevant;
