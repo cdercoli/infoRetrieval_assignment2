@@ -31,6 +31,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
+import org.apache.lucene.search.similarities.ClassicSimilarity;
 
 
 class Query
@@ -55,14 +56,14 @@ public class CreateIndex
             List<Query> queries = topicsToQueries(Paths.get("..", "topics", "topics").toString());
 
 
-            //Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
+            Directory directory = FSDirectory.open(Paths.get(INDEX_DIRECTORY));
             Analyzer analyzer = new EnglishAnalyzer();
-            //IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-            //indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
-            //IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
-            //CollectionIndexer.Index(indexWriter);
-            //indexWriter.close();
-            //directory.close();
+            IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
+            indexWriterConfig.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+            IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
+            CollectionIndexer.Index(indexWriter);
+            indexWriter.close();
+            directory.close();
             
 
 
